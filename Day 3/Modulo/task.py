@@ -1,0 +1,5 @@
+number= float(input('hi bitch put on your number'))
+if number%2==0:
+    print('the number is even')
+else:
+    print('the number is odd')
