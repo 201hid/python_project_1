@@ -1,32 +1,46 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
-
-
-
-# TODO-1: Create a function called 'encrypt()' that takes 'original_text' and 'shift_amount' as 2 inputs.
-
-# TODO-2: Inside the 'encrypt()' function, shift each letter of the 'original_text' forwards in the alphabet
-#  by the shift amount and print the encrypted text.
-
-# TODO-4: What happens if you try to shift z forwards by 9? Can you fix the code?
-
-# TODO-3: Call the 'encrypt()' function and pass in the user inputs. You should be able to test the code and encrypt a
-#  message.
-
 def encryption(text):
+    enc_result = ""
     for i in range(len(text)):
         if text[i] in alphabet:
-            text[i]=alphabet[alphabet.index(text[i])+shift]
-        print(text)
+            enc_result += alphabet[(alphabet.index(text[i]) + shift) % len(alphabet)]
+        else:
+            enc_result += text[i]
+    print("\n🔐 Encrypted message:")
+    print(enc_result)
 
 
+def decryption(encrypted_texted):
+    decr_result = ""
+    for i in range(len(encrypted_texted)):
+        if encrypted_texted[i] in alphabet:
+            decr_result += alphabet[(alphabet.index(encrypted_texted[i]) - shift) % len(alphabet)]
+        else:
+            decr_result += encrypted_texted[i]
+    print("\n🔓 Decrypted message:")
+    print(decr_result)
 
 
+def main():
+    print("=" * 40)
+    print("🔤 Caesar Cipher CLI Tool")
+    print("=" * 40)
+
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n> ").lower()
+    text = input("Type your message:\n> ").lower()
+    global shift
+    shift = int(input("Type the shift number:\n> "))
+
+    print("\nProcessing...\n")
+
+    if direction == 'encode':
+        encryption(text)
+    elif direction == 'decode':
+        decryption(text)
+    else:
+        print("⚠️  Enter a valid instruction (encode/decode)!")
 
 
-
-
-encryption(text)
+if __name__ == "__main__":
+    main()
