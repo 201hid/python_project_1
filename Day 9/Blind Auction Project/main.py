@@ -19,7 +19,7 @@ def adduserdata():
     while more_user==1:\
 
         name=input('whats your name?')
-        bid=int(input("enter your bid amount?"))
+        bid=int(input("enter your bidd amount?"))
         bid_data[name]=bid
         add_More=input("Do you want to add more user? Type Yes for adding and No for not adding").lower()
         if add_More=="no":
